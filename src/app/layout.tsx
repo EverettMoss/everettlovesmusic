@@ -9,8 +9,8 @@ const font = Schibsted_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "On Repeat",
-  description: "A weekly music journal — the songs I couldn't stop playing, with a line or two on why.",
+  title: "Everett Loves Music",
+  description: "the songs are forcing me to write about them",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
