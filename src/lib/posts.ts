@@ -3,11 +3,23 @@ import path from "path";
 
 export type Verdict = "soty" | "love" | "rotation" | "cool" | "ok" | "boring" | "meh" | "skip";
 
+export interface LyricLine {
+  text: string;
+  highlight?: boolean;
+}
+
+export interface Lyric {
+  lines: LyricLine[];
+  caption?: string;
+}
+
 export interface Song {
   title: string;
   artist: string;
   verdict: Verdict;
   review: string;
+  reviewPost?: string;
+  lyric?: Lyric;
   spotifyQuery: string;
   albumArtUrl: string | null;
 }

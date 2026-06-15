@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Song } from "@/lib/posts";
+import type { Song, LyricLine } from "@/lib/posts";
 import VerdictBadge from "./VerdictBadge";
 
 const LINK_STYLE: React.CSSProperties = {
@@ -15,6 +15,29 @@ const LINK_STYLE: React.CSSProperties = {
   borderRadius: 999,
   whiteSpace: "nowrap",
 };
+
+function LyricBlock({ lines, caption }: { lines: LyricLine[]; caption?: string }) {
+  return (
+    <div style={{ margin: "18px 0 4px", paddingLeft: 18, borderLeft: "2px solid oklch(0.45 0.1 165)" }}>
+      <div style={{ fontSize: 18, lineHeight: 1.62, fontWeight: 500, letterSpacing: "-0.012em", color: "oklch(0.3 0.008 60)" }}>
+        {lines.map((line, i) =>
+          line.highlight ? (
+            <div key={i} style={{ display: "inline", background: "oklch(0.92 0.05 162)", borderRadius: 3, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone", padding: "1px 2px" }}>
+              {line.text}
+            </div>
+          ) : (
+            <div key={i}>{line.text}</div>
+          )
+        )}
+      </div>
+      {caption && (
+        <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: "oklch(0.46 0.11 165)", marginTop: 12 }}>
+          — {caption}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function SongCard({ song }: { song: Song }) {
   const spotifyUrl = `https://open.spotify.com/search/${encodeURIComponent(song.spotifyQuery)}`;
@@ -44,6 +67,14 @@ export default function SongCard({ song }: { song: Song }) {
         <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "11px 0 0", maxWidth: "58ch" }}>
           {song.review}
         </p>
+
+        {song.lyric && <LyricBlock lines={song.lyric.lines} caption={song.lyric.caption} />}
+
+        {song.reviewPost && (
+          <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "14px 0 0", maxWidth: "58ch" }}>
+            {song.reviewPost}
+          </p>
+        )}
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 13 }}>
           <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>

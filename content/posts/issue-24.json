@@ -9,7 +9,16 @@
       "title": "Bags",
       "artist": "Clairo",
       "verdict": "love",
-      "review": "Three years on and the bridge still gets me every time. Bedroom-pop that earns its restraint.",
+      "review": "Three years on and the bridge still gets me every time. Bedroom-pop that earns its restraint —",
+      "lyric": {
+        "lines": [
+          { "text": "I don't need a reason," },
+          { "text": "it's just how you made me feel", "highlight": true },
+          { "text": "and I think that might be enough" }
+        ],
+        "caption": "the line that gets me, every time"
+      },
+      "reviewPost": "— and then it just lets you go.",
       "spotifyQuery": "Bags Clairo",
       "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f2/47/06/f24706bc-a90c-f730-bd8a-586ddde8af3e/829299184631.jpg/600x600bb.jpg"
     },
