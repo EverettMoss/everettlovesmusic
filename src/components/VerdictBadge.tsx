@@ -3,7 +3,7 @@ import type { Verdict } from "@/lib/posts";
 const VERDICTS: Record<Verdict, { label: string; color: string; bg: string }> = {
   soty:   { label: "Song of the year potential",    color: "oklch(0.6 0.13 75)",   bg: "oklch(0.95 0.045 82)" },
   love:   { label: "I love this + on repeat",       color: "oklch(0.54 0.13 158)", bg: "oklch(0.95 0.04 160)" },
-  rotation:   { label: "In rotation",               color: "oklch(0.54 0.13 158)", bg: "oklch(0.95 0.04 160)" },
+  rotation:   { label: "In rotation",               color: "oklch(0.5 0.11 195)",  bg: "oklch(0.95 0.035 195)" },
   cool:   { label: "Cool but no reason to replay",  color: "oklch(0.54 0.1 232)",  bg: "oklch(0.95 0.03 232)" },
   ok:     { label: "OK",                            color: "oklch(0.5 0.012 250)", bg: "oklch(0.95 0.004 250)" },
   boring: { label: "Boring",                        color: "oklch(0.53 0.07 288)", bg: "oklch(0.95 0.025 288)" },
