@@ -7,7 +7,7 @@ export default function Masthead() {
           My Music Journal
         </span>
       </div>
-      <h1 style={{ fontSize: 52, fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1 }}>Everett Loves Music</h1>
+      <h1 style={{ fontSize: "clamp(34px, 11vw, 52px)", fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1 }}>Everett Loves Music</h1>
       <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--text-muted)", margin: "20px auto 0", maxWidth: "44ch" }}>
         The home of all my music thoughts & reccomendations.
       </p>

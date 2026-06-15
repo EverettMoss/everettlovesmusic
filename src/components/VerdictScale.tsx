@@ -1,7 +1,7 @@
 import VerdictBadge from "./VerdictBadge";
 import type { Verdict } from "@/lib/posts";
 
-const ALL_VERDICTS: Verdict[] = ["soty", "love", "cool", "ok", "boring", "meh", "skip"];
+const ALL_VERDICTS: Verdict[] = ["soty", "love", "rotation", "cool", "ok", "boring", "meh", "skip"];
 
 export default function VerdictScale() {
   return (

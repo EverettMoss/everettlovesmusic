@@ -45,7 +45,7 @@ export default function SongCard({ song }: { song: Song }) {
           {song.review}
         </p>
 
-        <div style={{ display: "flex", gap: 8, marginTop: 13 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 13 }}>
           <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
             Spotify <span style={{ fontSize: 11, opacity: 0.6 }}>↗</span>
           </a>

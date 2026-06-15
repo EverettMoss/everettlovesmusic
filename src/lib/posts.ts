@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-export type Verdict = "soty" | "love" | "cool" | "ok" | "boring" | "meh" | "skip";
+export type Verdict = "soty" | "love" | "rotation" | "cool" | "ok" | "boring" | "meh" | "skip";
 
 export interface Song {
   title: string;
