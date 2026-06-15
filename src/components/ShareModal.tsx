@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { toPng } from "html-to-image";
 import type { Song } from "@/lib/posts";
 import { VERDICTS } from "./VerdictBadge";
@@ -44,13 +44,27 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
   const sq1Ref = useRef<HTMLDivElement>(null);
   const sq2Ref = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
+  const [previewW, setPreviewW] = useState(300);
+
+  useEffect(() => {
+    if (modalRef.current) {
+      // clientWidth includes padding; subtract 16px on each side
+      setPreviewW(Math.min(480, modalRef.current.clientWidth - 32));
+    }
+  }, []);
 
   const v = VERDICTS[song.verdict];
   const art = proxyArt(song.albumArtUrl);
   const d1 = fmtShort(postMeta.date, postMeta.issue);
   const d2 = fmtLong(postMeta.date, postMeta.issue);
   const FONT = { fontFamily: "'Schibsted Grotesk', sans-serif" };
+
+  const feedScale = previewW / 1080;
+  const storyW = Math.min(337, Math.round(previewW * 0.65));
+  const storyH = Math.round(storyW * 1920 / 1080);
+  const storyScale = storyW / 1080;
 
   async function exportCard(
     ref: React.RefObject<HTMLDivElement | null>,
@@ -117,11 +131,12 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
 
   return (
     <div
-      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.55)", zIndex: 1000, overflowY: "auto", padding: "40px 20px" }}
+      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.55)", zIndex: 1000, overflowY: "auto", padding: "16px 12px" }}
       onClick={onClose}
     >
       <div
-        style={{ background: "var(--bg)", borderRadius: 16, width: "100%", maxWidth: 540, margin: "0 auto", padding: "32px 28px 48px" }}
+        ref={modalRef}
+        style={{ background: "var(--bg)", borderRadius: 16, width: "100%", maxWidth: 540, margin: "0 auto", padding: "24px 16px 36px" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal header */}
@@ -144,11 +159,11 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
         {/* ── CARD 1: Feed 1080×1080 warm ── */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: "0.04em", color: "var(--text-muted)" }}>Feed post · 1080 × 1080</span>
+            <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: "0.04em", color: "var(--text-muted)", flexShrink: 1, minWidth: 0 }}>Feed post · 1080 × 1080</span>
             <button onClick={() => exportCard(sq1Ref, `${slug}-feed.png`, 1080, 1080)} disabled={busy} style={DL_BTN}>↓ PNG</button>
           </div>
-          <div style={{ width: 480, height: 480, borderRadius: 14, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 12px 40px -16px oklch(0.3 0.02 60 / 0.3)" }}>
-            <div ref={sq1Ref} style={{ width: 1080, height: 1080, transform: "scale(0.4444)", transformOrigin: "top left", background: "oklch(0.992 0.003 80)", position: "relative", ...FONT }}>
+          <div style={{ width: previewW, height: previewW, borderRadius: 14, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 12px 40px -16px oklch(0.3 0.02 60 / 0.3)" }}>
+            <div ref={sq1Ref} style={{ width: 1080, height: 1080, transform: `scale(${feedScale})`, transformOrigin: "top left", background: "oklch(0.992 0.003 80)", position: "relative", ...FONT }}>
               <div style={{ position: "absolute", inset: 0, padding: 84, display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
@@ -184,11 +199,11 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
         {/* ── CARD 2: Feed 1080×1080 green band ── */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: "0.04em", color: "var(--text-muted)" }}>Feed post · header band</span>
+            <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: "0.04em", color: "var(--text-muted)", flexShrink: 1, minWidth: 0 }}>Feed post · header band</span>
             <button onClick={() => exportCard(sq2Ref, `${slug}-feed-band.png`, 1080, 1080)} disabled={busy} style={DL_BTN}>↓ PNG</button>
           </div>
-          <div style={{ width: 480, height: 480, borderRadius: 14, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 12px 40px -16px oklch(0.3 0.02 60 / 0.3)" }}>
-            <div ref={sq2Ref} style={{ width: 1080, height: 1080, transform: "scale(0.4444)", transformOrigin: "top left", background: "oklch(0.992 0.003 80)", position: "relative", ...FONT }}>
+          <div style={{ width: previewW, height: previewW, borderRadius: 14, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 12px 40px -16px oklch(0.3 0.02 60 / 0.3)" }}>
+            <div ref={sq2Ref} style={{ width: 1080, height: 1080, transform: `scale(${feedScale})`, transformOrigin: "top left", background: "oklch(0.992 0.003 80)", position: "relative", ...FONT }}>
               {/* Green header band */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 430, background: "oklch(0.45 0.1 165)", padding: "80px 84px", display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -228,11 +243,11 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
         {/* ── CARD 3: Story 1080×1920 ── */}
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: "0.04em", color: "var(--text-muted)" }}>Story · 1080 × 1920</span>
+            <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: "0.04em", color: "var(--text-muted)", flexShrink: 1, minWidth: 0 }}>Story · 1080 × 1920</span>
             <button onClick={() => exportCard(storyRef, `${slug}-story.png`, 1080, 1920)} disabled={busy} style={DL_BTN}>↓ PNG</button>
           </div>
-          <div style={{ width: 337, height: 600, borderRadius: 18, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 12px 40px -16px oklch(0.3 0.02 60 / 0.3)" }}>
-            <div ref={storyRef} style={{ width: 1080, height: 1920, transform: "scale(0.3125)", transformOrigin: "top left", background: "oklch(0.992 0.003 80)", position: "relative", ...FONT }}>
+          <div style={{ width: storyW, height: storyH, borderRadius: 18, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 12px 40px -16px oklch(0.3 0.02 60 / 0.3)" }}>
+            <div ref={storyRef} style={{ width: 1080, height: 1920, transform: `scale(${storyScale})`, transformOrigin: "top left", background: "oklch(0.992 0.003 80)", position: "relative", ...FONT }}>
               <div style={{ position: "absolute", inset: 0, padding: "130px 90px 116px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
                   <span style={{ width: 16, height: 16, background: "oklch(0.45 0.1 165)", borderRadius: 3, display: "block" }} />

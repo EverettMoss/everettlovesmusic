@@ -6,28 +6,28 @@
   "type": "songs",
   "songs": [
     {
-      "title": "Pink + White",
-      "artist": "Frank Ocean",
-      "verdict": "soty",
-      "review": "Summer in a bottle. I save it for the first warm evening of the year and let it wreck me a little.",
-      "spotifyQuery": "Pink White Frank Ocean",
-      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/45/68/bb4568f3-68cd-619d-fbcb-4e179916545d/BlondCover-Final.jpg/600x600bb.jpg"
-    },
-    {
-      "title": "The Less I Know the Better",
-      "artist": "Tame Impala",
-      "verdict": "ok",
-      "review": "The bassline could still pay rent, but I think I've finally worn this one all the way out. Fine, not essential.",
-      "spotifyQuery": "The Less I Know the Better Tame Impala",
-      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a9/a2/81/a9a281f3-12ba-eb91-2d58-e535b306125c/artwork.jpg/600x600bb.jpg"
-    },
-    {
-      "title": "Glory Box",
-      "artist": "Portishead",
+      "title": "Forget me Not .",
+      "artist": "fakemink",
       "verdict": "love",
-      "review": "Rainy-window music for a warm night. Smoky, slow, and impossibly cool.",
-      "spotifyQuery": "Glory Box Portishead",
-      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/71/93/c1719342-df7d-e9c5-c87c-53dae5afb289/00042282855329.rgb.jpg/600x600bb.jpg"
+      "review": "Super hypnotic beat from fakemink. This is a kinda dark love song ",
+      "spotifyQuery": "terrified fakemink",
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/60/26/a4/6026a4d8-bcce-8c54-4988-88e4047c3fe9/840471814559.png/600x600bb.jpg"
+    },
+    {
+      "title": "North Pole",
+      "artist": "Boohavinn",
+      "verdict": "rotation",
+      "review": "Found this on TikTok, very catchy beat + flow.",
+      "spotifyQuery": "North Pole boohavinn",
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0c/b0/95/0cb09580-aa74-3258-2cea-9c516434157c/859737899360_cover.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "All I Want",
+      "artist": "Lelo",
+      "verdict": "love",
+      "review": "The whole song he's using the title of the track to tease the full chorus which only happens once. He repeadtly says: All I want-, just to cut himself off. The pay off is worth when we finaly get the chorus.",
+      "spotifyQuery": "mastiff pink tiles lelo",
+      "albumArtUrl": null
     }
   ]
 }
