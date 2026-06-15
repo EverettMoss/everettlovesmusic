@@ -9,6 +9,7 @@
     "fetch-art": "npx ts-node --project tsconfig.scripts.json scripts/fetch-album-art.ts"
   },
   "dependencies": {
+    "html-to-image": "^1.11.13",
     "next": "^14.2.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"

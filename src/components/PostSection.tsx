@@ -32,7 +32,7 @@ export default function PostSection({ post }: { post: Post }) {
           </p>
           <div style={{ marginTop: 28 }}>
             {post.songs.map((song, i) => (
-              <SongCard key={i} song={song} />
+              <SongCard key={i} song={song} postMeta={{ issue: post.issue, date: post.date }} />
             ))}
           </div>
         </>
