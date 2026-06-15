@@ -1,0 +1,41 @@
+{
+  "issue": 3,
+  "date": "2026-06-08",
+  "title": "Four for a slow week",
+  "intro": "Not much happened, which is exactly the kind of week these songs are built for. Headphones on, dishes done slowly, the good kind of nothing.",
+  "type": "songs",
+  "songs": [
+    {
+      "title": "Bags",
+      "artist": "Clairo",
+      "verdict": "love",
+      "review": "Three years on and the bridge still gets me every time. Bedroom-pop that earns its restraint.",
+      "spotifyQuery": "Bags Clairo",
+      "albumArtUrl": null
+    },
+    {
+      "title": "Two Weeks",
+      "artist": "Grizzly Bear",
+      "verdict": "soty",
+      "review": "Those staccato keys are pure muscle memory at this point. A perfect song, and I won't be taking questions.",
+      "spotifyQuery": "Two Weeks Grizzly Bear",
+      "albumArtUrl": null
+    },
+    {
+      "title": "Redbone",
+      "artist": "Childish Gambino",
+      "verdict": "cool",
+      "review": "Smooth as ever and that bass still talks — but I put it on once this week and didn't reach for it again.",
+      "spotifyQuery": "Redbone Childish Gambino",
+      "albumArtUrl": null
+    },
+    {
+      "title": "Motion Sickness",
+      "artist": "Phoebe Bridgers",
+      "verdict": "love",
+      "review": "Anger and tenderness in the same breath. I keep finding new lines to underline.",
+      "spotifyQuery": "Motion Sickness Phoebe Bridgers",
+      "albumArtUrl": null
+    }
+  ]
+}

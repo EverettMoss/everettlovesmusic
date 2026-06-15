@@ -1,0 +1,28 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+:root {
+  --bg: oklch(0.992 0.003 80);
+  --text: oklch(0.26 0.008 60);
+  --text-muted: oklch(0.52 0.012 60);
+  --text-secondary: oklch(0.42 0.01 60);
+  --text-dim: oklch(0.45 0.01 60);
+  --accent: oklch(0.45 0.1 165);
+  --border: oklch(0.91 0.004 70);
+  --max-width: 700px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: oklch(0.45 0.1 165 / 0.16);
+}
+
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { margin: 0; }
+p { margin: 0; }
