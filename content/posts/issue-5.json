@@ -47,7 +47,7 @@
         }
       ],
       "searchQuery": "Hurt b6 single rap",
-      "albumArtUrl": null
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/20/53/99/2053998b-5c05-71e0-bff9-fb65e71d9cb5/808391366756.jpg/600x600bb.jpg"
     },
     {
       "title": "Mayweather",
@@ -64,10 +64,11 @@
             }
           ],
           "caption": "Modern day Shakespeare "
-        }],
+        }
+      ],
       "review": "He's funny",
       "searchQuery": "Warhol.SS b6 mayweather",
-      "albumArtUrl": null
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/89/3e/0e/893e0e34-1fd8-740c-45f1-6c345c4bd693/820200561961.jpg/600x600bb.jpg"
     },
     {
       "title": "Ezel",
@@ -75,7 +76,7 @@
       "verdict": "rotation",
       "review": "Smooth as ever and that bass still talks — but I put it on once this week and didn't reach for it again.",
       "searchQuery": "b6 ezel",
-      "albumArtUrl": null
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4d/77/ad/4d77adfe-c6b3-f036-cc19-eb53059260ec/820200968999.jpg/600x600bb.jpg"
     }
   ]
 }

@@ -20,7 +20,7 @@ export interface Song {
   review: string;
   reviewPost?: string;
   lyrics?: Lyric[];
-  searchQuery: string;
+  searchQuery?: string;
   albumArtUrl: string | null;
 }
 
