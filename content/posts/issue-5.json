@@ -1,0 +1,81 @@
+{
+  "issue": 5,
+  "date": "2026-06-12",
+  "title": "Go Listen to B6",
+  "intro": "I found B6 the same way most people did: through TikTok. His songs have been used in sports edits over the last few months, accumulating tens of millions of views. Similar to rappers like BabyTron, every song is packed with quotable lines. You could put every line from one of his songs on a board, throw a dart, and end up with an Instagram-ready caption.",
+  "type": "songs",
+  "songs": [
+    {
+      "title": "Hurt",
+      "artist": "B6",
+      "verdict": "love",
+      "review": "Hard. Probably my favorite chorus from him and one of his most popular songs. I'd start here.",
+      "lyrics": [
+        {
+          "lines": [
+            {
+              "text": "It done been a lot of years of pain (Pain)"
+            },
+            {
+              "text": "I done seen tears fall out the rain (Out the rain)"
+            }
+          ],
+          "caption": "like what do you mean: \"you saw a tear in the rain\" "
+        },
+        {
+          "lines": [
+            {
+              "text": "I'm like some legs on a skateboard"
+            },
+            {
+              "text": "So the grind, that is what I'm on (That is what I'm on)"
+            },
+            {
+              "text": "One in a billion, can't be cloned (Can't be cloned)"
+            },
+            {
+              "text": "And back in school, I used to joan (Used to joan)"
+            },
+            {
+              "text": "She told me my watch look like Big Ben",
+              "highlight": true
+            },
+            {
+              "text": "I'm out in London eatin' scones (Scones, scones)"
+            }
+          ]
+        }
+      ],
+      "searchQuery": "Hurt b6 single rap",
+      "albumArtUrl": null
+    },
+    {
+      "title": "Mayweather",
+      "artist": "Warhol.SS & B6",
+      "verdict": "rotation",
+      "lyrics": [
+        {
+          "lines": [
+            {
+              "text": "I liked her over the phone, she asked for a flight just 'cause I'm liking her pics (I'm liking her pics)"
+            },
+            {
+              "text": "She ask for some shoes, I pull down my pants (My pants), now babygirl shopping at Dick's (Shopping at Dick's)"
+            }
+          ],
+          "caption": "Modern day Shakespeare "
+        }],
+      "review": "He's funny",
+      "searchQuery": "Warhol.SS b6 mayweather",
+      "albumArtUrl": null
+    },
+    {
+      "title": "Ezel",
+      "artist": "Warhol.SS & B6",
+      "verdict": "rotation",
+      "review": "Smooth as ever and that bass still talks — but I put it on once this week and didn't reach for it again.",
+      "searchQuery": "b6 ezel",
+      "albumArtUrl": null
+    }
+  ]
+}

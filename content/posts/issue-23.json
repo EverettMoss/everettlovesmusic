@@ -1,8 +1,8 @@
 {
   "issue": 2,
   "date": "2026-06-01",
-  "title": "Late nights, open windows",
-  "intro": "First properly warm week of the year, so the playlist tilted toward the slow and the smoky. Honest takes below — not everything made the cut.",
+  "title": "I like What These Young Fellas are Doin",
+  "intro": "Group of artists breaking into the scene.",
   "type": "songs",
   "songs": [
     {
@@ -10,7 +10,7 @@
       "artist": "fakemink",
       "verdict": "love",
       "review": "Super hypnotic beat from fakemink. This is a kinda dark love song ",
-      "spotifyQuery": "terrified fakemink",
+      "searchQuery": "terrified fakemink",
       "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/60/26/a4/6026a4d8-bcce-8c54-4988-88e4047c3fe9/840471814559.png/600x600bb.jpg"
     },
     {
@@ -18,7 +18,7 @@
       "artist": "Boohavinn",
       "verdict": "rotation",
       "review": "Found this on TikTok, very catchy beat + flow.",
-      "spotifyQuery": "North Pole boohavinn",
+      "searchQuery": "North Pole boohavinn",
       "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0c/b0/95/0cb09580-aa74-3258-2cea-9c516434157c/859737899360_cover.jpg/600x600bb.jpg"
     },
     {
@@ -26,7 +26,7 @@
       "artist": "Lelo",
       "verdict": "love",
       "review": "The whole song he's using the title of the track to tease the full chorus which only happens once. He repeadtly says: All I want-, just to cut himself off. The pay off is worth when we finaly get the chorus.",
-      "spotifyQuery": "mastiff pink tiles lelo",
+      "searchQuery": "mastiff pink tiles lelo",
       "albumArtUrl": null
     }
   ]

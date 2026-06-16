@@ -108,24 +108,28 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
   function LyricBlock({ fontSize = 36, borderWidth = 5, paddingLeft = 30, captionSize = 23, marginTop = 40 }: {
     fontSize?: number; borderWidth?: number; paddingLeft?: number; captionSize?: number; marginTop?: number;
   }) {
-    if (!song.lyric) return null;
+    if (!song.lyrics?.length) return null;
     return (
-      <div style={{ marginTop, paddingLeft, borderLeft: `${borderWidth}px solid oklch(0.45 0.1 165)` }}>
-        <div style={{ fontSize, lineHeight: 1.52, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)" }}>
-          {song.lyric.lines.map((l, i) =>
-            l.highlight ? (
-              <div key={i} style={{ display: "inline", background: "oklch(0.92 0.05 162)", borderRadius: 5, padding: "2px 5px" }}>{l.text}</div>
-            ) : (
-              <div key={i}>{l.text}</div>
-            )
-          )}
-        </div>
-        {song.lyric.caption && (
-          <div style={{ fontSize: captionSize, fontWeight: 600, letterSpacing: "0.01em", color: "oklch(0.46 0.11 165)", marginTop: 16 }}>
-            — {song.lyric.caption}
+      <>
+        {song.lyrics.map((lyric, li) => (
+          <div key={li} style={{ marginTop, paddingLeft, borderLeft: `${borderWidth}px solid oklch(0.45 0.1 165)` }}>
+            <div style={{ fontSize, lineHeight: 1.52, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)" }}>
+              {lyric.lines.map((l, i) =>
+                l.highlight ? (
+                  <div key={i} style={{ display: "inline", background: "oklch(0.92 0.05 162)", borderRadius: 5, padding: "2px 5px" }}>{l.text}</div>
+                ) : (
+                  <div key={i}>{l.text}</div>
+                )
+              )}
+            </div>
+            {lyric.caption && (
+              <div style={{ fontSize: captionSize, fontWeight: 600, letterSpacing: "0.01em", color: "oklch(0.46 0.11 165)", marginTop: 16 }}>
+                — {lyric.caption}
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        ))}
+      </>
     );
   }
 
@@ -268,11 +272,11 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
 
                 <p style={{ fontSize: 33, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: "44px 0 0", maxWidth: "30ch" }}>{song.review}</p>
 
-                {song.lyric && (
-                  <div style={{ marginTop: 46 }}>
+                {song.lyrics?.map((lyric, li) => (
+                  <div key={li} style={{ marginTop: 46 }}>
                     <div style={{ fontSize: 30, lineHeight: 1, color: "oklch(0.45 0.1 165)", marginBottom: 18 }}>♪</div>
                     <div style={{ fontSize: 40, lineHeight: 1.5, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)" }}>
-                      {song.lyric.lines.map((l, i) =>
+                      {lyric.lines.map((l, i) =>
                         l.highlight ? (
                           <div key={i}><span style={{ background: "oklch(0.92 0.05 162)", borderRadius: 5, padding: "2px 8px" }}>{l.text}</span></div>
                         ) : (
@@ -281,7 +285,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                       )}
                     </div>
                   </div>
-                )}
+                ))}
 
                 <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
                   <span style={{ fontSize: 26, fontWeight: 600, color: "oklch(0.46 0.11 165)", letterSpacing: "0.02em" }}>Full issue · everettlovesmusic.blog</span>

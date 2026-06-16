@@ -57,8 +57,9 @@ interface Props {
 
 export default function SongCard({ song, postMeta }: Props) {
   const [showShare, setShowShare] = useState(false);
-  const spotifyUrl = `https://open.spotify.com/search/${encodeURIComponent(song.spotifyQuery)}`;
-  const appleMusicUrl = `https://music.apple.com/us/search?term=${encodeURIComponent(song.spotifyQuery)}`;
+  const query = encodeURIComponent(`${song.title} ${song.artist}`);
+  const spotifyUrl = `https://open.spotify.com/search/${query}`;
+  const appleMusicUrl = `https://music.apple.com/us/search?term=${query}`;
 
   return (
     <>
@@ -86,7 +87,7 @@ export default function SongCard({ song, postMeta }: Props) {
             {song.review}
           </p>
 
-          {song.lyric && <LyricBlock lines={song.lyric.lines} caption={song.lyric.caption} />}
+          {song.lyrics?.map((l, i) => <LyricBlock key={i} lines={l.lines} caption={l.caption} />)}
 
           {song.reviewPost && (
             <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "14px 0 0", maxWidth: "58ch" }}>

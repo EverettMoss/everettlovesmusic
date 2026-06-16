@@ -25,13 +25,13 @@ async function main() {
     let changed = false;
     for (const song of post.songs) {
       if (song.albumArtUrl) continue;
-      const artUrl = await fetchAlbumArt(song.spotifyQuery);
+      const artUrl = await fetchAlbumArt(song.searchQuery);
       if (artUrl) {
         song.albumArtUrl = artUrl;
         changed = true;
         console.log(`  ✓ ${song.title} — ${song.artist}`);
       } else {
-        console.log(`  ✗ no art found: ${song.spotifyQuery}`);
+        console.log(`  ✗ no art found: ${song.searchQuery}`);
       }
     }
 

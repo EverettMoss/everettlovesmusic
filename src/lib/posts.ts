@@ -19,8 +19,8 @@ export interface Song {
   verdict: Verdict;
   review: string;
   reviewPost?: string;
-  lyric?: Lyric;
-  spotifyQuery: string;
+  lyrics?: Lyric[];
+  searchQuery: string;
   albumArtUrl: string | null;
 }
 
