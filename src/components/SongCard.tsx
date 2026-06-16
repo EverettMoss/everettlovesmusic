@@ -63,8 +63,8 @@ export default function SongCard({ song, postMeta }: Props) {
 
   return (
     <>
-      <article style={{ display: "flex", gap: 20, alignItems: "flex-start", padding: "26px 0", borderTop: "1px solid var(--border)" }}>
-        <div style={{ width: 82, height: 82, flex: "none", borderRadius: 7, overflow: "hidden", background: "oklch(0.88 0.005 70)" }}>
+      <article className="song-card">
+        <div className="song-card-art" style={{ width: 82, height: 82, borderRadius: 7, overflow: "hidden", background: "oklch(0.88 0.005 70)" }}>
           {song.albumArtUrl ? (
             <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} width={82} height={82} style={{ display: "block" }} />
           ) : (
@@ -72,17 +72,18 @@ export default function SongCard({ song, postMeta }: Props) {
           )}
         </div>
 
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="song-card-header">
           <h3 style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.01em" }}>
             {song.title}
             <span style={{ margin: "0 5px", color: "oklch(0.82 0.004 70)" }}>·</span>
             <span style={{ fontWeight: 400, color: "var(--text-muted)" }}>{song.artist}</span>
           </h3>
-
           <div style={{ marginTop: 11 }}>
             <VerdictBadge verdict={song.verdict} />
           </div>
+        </div>
 
+        <div className="song-card-body">
           <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "11px 0 0", maxWidth: "58ch" }}>
             {song.review}
           </p>

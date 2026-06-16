@@ -26,3 +26,25 @@ body {
 a { color: inherit; text-decoration: none; }
 h1, h2, h3 { margin: 0; }
 p { margin: 0; }
+
+.song-card {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  grid-template-areas: "art header" "art body";
+  column-gap: 20px;
+  row-gap: 0;
+  align-items: start;
+  padding: 26px 0;
+  border-top: 1px solid var(--border);
+}
+.song-card-art  { grid-area: art; }
+.song-card-header { grid-area: header; min-width: 0; }
+.song-card-body { grid-area: body; min-width: 0; }
+
+@media (max-width: 600px) {
+  .song-card {
+    grid-template-areas: "art header" "body body";
+    column-gap: 14px;
+    row-gap: 14px;
+  }
+}
