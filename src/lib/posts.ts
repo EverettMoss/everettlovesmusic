@@ -41,7 +41,37 @@ export interface NotePost {
   paragraphs: string[];
 }
 
-export type Post = SongPost | NotePost;
+export interface StandoutTrack {
+  trackNumber?: number;
+  title: string;
+  verdict: Verdict;
+  verdictLabel?: string;
+  review: string;
+}
+
+export interface AlbumPost {
+  issue: number;
+  date: string;
+  title: string;
+  type: "album";
+  artist: string;
+  albumArtUrl: string | null;
+  verdict: Verdict;
+  verdictLabel?: string;
+  rating: number;
+  ratingVerdict: string;
+  released?: string;
+  label?: string;
+  runtime?: string;
+  tracks?: number;
+  intro: string;
+  paragraphs?: string[];
+  pullQuote?: string;
+  standoutTracks?: StandoutTrack[];
+  searchQuery?: string;
+}
+
+export type Post = SongPost | NotePost | AlbumPost;
 
 export function getAllPosts(): Post[] {
   const postsDir = path.join(process.cwd(), "content", "posts");

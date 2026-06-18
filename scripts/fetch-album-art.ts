@@ -11,13 +11,14 @@ function norm(s: string) {
 async function fetchAlbumArt(
   title: string,
   artist: string,
-  searchQuery?: string
+  searchQuery?: string,
+  entity: "musicTrack" | "album" = "musicTrack"
 ): Promise<{ url: string; matchedTitle: string; matchedArtist: string } | null> {
   const term = searchQuery ?? `${title} ${artist}`;
-  const url = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=musicTrack&limit=5`;
+  const url = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=${entity}&limit=5`;
   const res = await fetch(url);
   const data = await res.json() as {
-    results?: Array<{ trackName?: string; artistName?: string; artworkUrl100?: string }>;
+    results?: Array<{ trackName?: string; collectionName?: string; artistName?: string; artworkUrl100?: string }>;
   };
   const results = data.results ?? [];
   if (results.length === 0) return null;
@@ -27,7 +28,8 @@ async function fetchAlbumArt(
 
   // Score each result: exact title = 3, partial title = 1, exact artist = 2, partial artist = 1
   const scored = results.map((r) => {
-    const rTitle = norm(r.trackName ?? "");
+    // Albums use collectionName; tracks use trackName
+    const rTitle = norm(r.collectionName ?? r.trackName ?? "");
     const rArtist = norm(r.artistName ?? "");
     let score = 0;
     if (rTitle === titleN) score += 3;
@@ -41,9 +43,10 @@ async function fetchAlbumArt(
   const best = scored[0].r;
   if (!best.artworkUrl100) return null;
 
+  const matchedTitle = best.collectionName ?? best.trackName ?? "";
   return {
     url: best.artworkUrl100.replace("100x100bb", "600x600bb"),
-    matchedTitle: best.trackName ?? "",
+    matchedTitle,
     matchedArtist: best.artistName ?? "",
   };
 }
@@ -57,29 +60,45 @@ async function main() {
   for (const file of files) {
     const filePath = path.join(postsDir, file);
     const post = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    if (post.type !== "songs") continue;
 
-    let changed = false;
-    for (const song of post.songs) {
-      if (song.albumArtUrl && !REFETCH) continue;
+    if (post.type === "songs") {
+      let changed = false;
+      for (const song of post.songs) {
+        if (song.albumArtUrl && !REFETCH) continue;
 
-      const result = await fetchAlbumArt(song.title, song.artist, song.searchQuery);
-      if (result) {
-        const titleMatch = norm(result.matchedTitle) === norm(song.title);
-        const artistMatch = norm(result.matchedArtist) === norm(song.artist);
-        const warning = !titleMatch || !artistMatch ? " ⚠ check match" : "";
-        console.log(`  ✓ ${song.title} — ${song.artist}`);
-        console.log(`    → "${result.matchedTitle}" by ${result.matchedArtist}${warning}`);
-        song.albumArtUrl = result.url;
-        changed = true;
-      } else {
-        console.log(`  ✗ no result: ${song.title} — ${song.artist}`);
+        const result = await fetchAlbumArt(song.title, song.artist, song.searchQuery);
+        if (result) {
+          const titleMatch = norm(result.matchedTitle) === norm(song.title);
+          const artistMatch = norm(result.matchedArtist) === norm(song.artist);
+          const warning = !titleMatch || !artistMatch ? " ⚠ check match" : "";
+          console.log(`  ✓ ${song.title} — ${song.artist}`);
+          console.log(`    → "${result.matchedTitle}" by ${result.matchedArtist}${warning}`);
+          song.albumArtUrl = result.url;
+          changed = true;
+        } else {
+          console.log(`  ✗ no result: ${song.title} — ${song.artist}`);
+        }
       }
-    }
+      if (changed) {
+        fs.writeFileSync(filePath, JSON.stringify(post, null, 2) + "\n");
+        updated++;
+      }
+    } else if (post.type === "album") {
+      if (post.albumArtUrl && !REFETCH) continue;
 
-    if (changed) {
-      fs.writeFileSync(filePath, JSON.stringify(post, null, 2) + "\n");
-      updated++;
+      console.log(`[album] ${post.title} — ${post.artist}`);
+      const result = await fetchAlbumArt(post.title, post.artist, post.searchQuery, "album");
+      if (result) {
+        const titleMatch = norm(result.matchedTitle) === norm(post.title);
+        const artistMatch = norm(result.matchedArtist) === norm(post.artist);
+        const warning = !titleMatch || !artistMatch ? " ⚠ check match" : "";
+        console.log(`  ✓ matched "${result.matchedTitle}" by ${result.matchedArtist}${warning}`);
+        post.albumArtUrl = result.url;
+        fs.writeFileSync(filePath, JSON.stringify(post, null, 2) + "\n");
+        updated++;
+      } else {
+        console.log(`  ✗ no result`);
+      }
     }
   }
 

@@ -1,0 +1,48 @@
+{
+  "issue": 25,
+  "date": "2026-06-15",
+  "title": "Blonde",
+  "type": "album",
+  "artist": "Frank Ocean",
+  "albumArtUrl": null,
+  "verdict": "soty",
+  "verdictLabel": "Song of the year potential — twice over",
+  "rating": 9.4,
+  "ratingVerdict": "A near-perfect mood piece that rewards patience over and over. Not background music — give it your full attention and it gives it back.",
+  "released": "2016",
+  "label": "Boys Don't Cry",
+  "runtime": "60 min",
+  "tracks": 17,
+  "intro": "Ten years of living with this record and it still refuses to sit still. Every time I think I've mapped it, a song I'd filed under skip cracks open and becomes the whole point of the week.",
+  "paragraphs": [
+    "It's an album built out of restraint — half-finished thoughts, guitars that never quite resolve, vocals pitched up until they sound like someone else remembering you. The first few listens feel like overhearing a conversation through a wall. Then one day the wall isn't there and you're inside it.",
+    "What keeps me coming back isn't any single hook — it's the negative space. The way a track ends a beat before you're ready. The silence is load-bearing here, and almost nobody else builds it this carefully."
+  ],
+  "pullQuote": "A record that sounds like it was mixed at 3 a.m. for an audience of one — and somehow that one is always you.",
+  "standoutTracks": [
+    {
+      "trackNumber": 4,
+      "title": "Ivy",
+      "verdict": "soty",
+      "review": "The opening line does more emotional damage than most full albums. Nostalgia and regret holding hands."
+    },
+    {
+      "trackNumber": 6,
+      "title": "Self Control",
+      "verdict": "love",
+      "review": "That outro is the closest music gets to an ache you can press play on. I let it loop more than I'll admit."
+    },
+    {
+      "trackNumber": 10,
+      "title": "Nights",
+      "verdict": "soty",
+      "review": "The beat switch is the most famous 40 seconds on the record for a reason. The whole album pivots on it."
+    },
+    {
+      "trackNumber": 14,
+      "title": "White Ferrari",
+      "verdict": "love",
+      "review": "Devastatingly quiet. The kind of song you only play when you actually want to feel something."
+    }
+  ]
+}

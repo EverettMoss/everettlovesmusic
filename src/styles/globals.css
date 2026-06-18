@@ -48,3 +48,29 @@ p { margin: 0; }
     row-gap: 14px;
   }
 }
+
+.album-hero {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+.album-hero-art {
+  flex: none;
+  width: 232px;
+  height: 232px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 44px -22px oklch(0.3 0.02 60 / 0.45);
+}
+
+@media (max-width: 600px) {
+  .album-hero {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .album-hero-art {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

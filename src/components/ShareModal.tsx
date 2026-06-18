@@ -104,32 +104,40 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
     await exportCard(storyRef, `${slug}-story.png`, 1080, 1920);
   }
 
-  // Lyric block shared between sq cards
-  function LyricBlock({ fontSize = 36, borderWidth = 5, paddingLeft = 30, captionSize = 23, marginTop = 40 }: {
-    fontSize?: number; borderWidth?: number; paddingLeft?: number; captionSize?: number; marginTop?: number;
+  // Clamp helper for review text
+  const clamp = (lines: number): React.CSSProperties => ({
+    display: "-webkit-box",
+    WebkitLineClamp: lines,
+    WebkitBoxOrient: "vertical" as const,
+    overflow: "hidden",
+  });
+
+  // Share cards show only the first lyric block, truncated to maxLines
+  function LyricBlock({ fontSize = 36, borderWidth = 5, paddingLeft = 30, captionSize = 23, marginTop = 40, maxLines = 4 }: {
+    fontSize?: number; borderWidth?: number; paddingLeft?: number; captionSize?: number; marginTop?: number; maxLines?: number;
   }) {
-    if (!song.lyrics?.length) return null;
+    const lyric = song.lyrics?.[0];
+    if (!lyric) return null;
+    const lines = lyric.lines.slice(0, maxLines);
+    const truncated = lyric.lines.length > maxLines;
     return (
-      <>
-        {song.lyrics.map((lyric, li) => (
-          <div key={li} style={{ marginTop, paddingLeft, borderLeft: `${borderWidth}px solid oklch(0.45 0.1 165)` }}>
-            <div style={{ fontSize, lineHeight: 1.52, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)" }}>
-              {lyric.lines.map((l, i) =>
-                l.highlight ? (
-                  <div key={i} style={{ display: "inline", background: "oklch(0.92 0.05 162)", borderRadius: 5, padding: "2px 5px" }}>{l.text}</div>
-                ) : (
-                  <div key={i}>{l.text}</div>
-                )
-              )}
-            </div>
-            {lyric.caption && (
-              <div style={{ fontSize: captionSize, fontWeight: 600, letterSpacing: "0.01em", color: "oklch(0.46 0.11 165)", marginTop: 16 }}>
-                — {lyric.caption}
-              </div>
-            )}
+      <div style={{ marginTop, paddingLeft, borderLeft: `${borderWidth}px solid oklch(0.45 0.1 165)` }}>
+        <div style={{ fontSize, lineHeight: 1.52, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)" }}>
+          {lines.map((l, i) =>
+            l.highlight ? (
+              <div key={i} style={{ display: "inline", background: "oklch(0.92 0.05 162)", borderRadius: 5, padding: "2px 5px" }}>{l.text}</div>
+            ) : (
+              <div key={i}>{l.text}</div>
+            )
+          )}
+          {truncated && <div style={{ opacity: 0.4 }}>…</div>}
+        </div>
+        {lyric.caption && (
+          <div style={{ fontSize: captionSize, fontWeight: 600, letterSpacing: "0.01em", color: "oklch(0.46 0.11 165)", marginTop: 16 }}>
+            — {lyric.caption}
           </div>
-        ))}
-      </>
+        )}
+      </div>
     );
   }
 
@@ -189,7 +197,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                     <div style={{ fontSize: 32, fontWeight: 400, color: "oklch(0.5 0.012 60)", marginTop: 6 }}>{song.artist}</div>
                   </div>
                 </div>
-                <p style={{ fontSize: 30, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: "52px 0 0" }}>{song.review}</p>
+                <p style={{ fontSize: 30, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: "52px 0 0", ...clamp(4) }}>{song.review}</p>
                 <LyricBlock />
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <span style={{ fontSize: 23, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>A weekly music journal</span>
@@ -233,7 +241,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
               </div>
               {/* Body */}
               <div style={{ position: "absolute", top: 430, left: 0, right: 0, bottom: 0, padding: "58px 84px 78px", display: "flex", flexDirection: "column" }}>
-                <p style={{ fontSize: 30, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: 0 }}>{song.review}</p>
+                <p style={{ fontSize: 30, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: 0, ...clamp(4) }}>{song.review}</p>
                 <LyricBlock marginTop={38} />
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <span style={{ fontSize: 23, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>A weekly music journal</span>
@@ -270,22 +278,23 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                 <h2 style={{ fontSize: 78, fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1, margin: "24px 0 0", color: "oklch(0.24 0.008 60)" }}>{song.title}</h2>
                 <div style={{ fontSize: 38, fontWeight: 400, color: "oklch(0.5 0.012 60)", marginTop: 10 }}>{song.artist}</div>
 
-                <p style={{ fontSize: 33, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: "44px 0 0", maxWidth: "30ch" }}>{song.review}</p>
+                <p style={{ fontSize: 33, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: "44px 0 0", maxWidth: "30ch", ...clamp(3) }}>{song.review}</p>
 
-                {song.lyrics?.map((lyric, li) => (
-                  <div key={li} style={{ marginTop: 46 }}>
+                {song.lyrics?.[0] && (
+                  <div style={{ marginTop: 46 }}>
                     <div style={{ fontSize: 30, lineHeight: 1, color: "oklch(0.45 0.1 165)", marginBottom: 18 }}>♪</div>
                     <div style={{ fontSize: 40, lineHeight: 1.5, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)" }}>
-                      {lyric.lines.map((l, i) =>
+                      {song.lyrics[0].lines.slice(0, 4).map((l, i) =>
                         l.highlight ? (
                           <div key={i}><span style={{ background: "oklch(0.92 0.05 162)", borderRadius: 5, padding: "2px 8px" }}>{l.text}</span></div>
                         ) : (
                           <div key={i}>{l.text}</div>
                         )
                       )}
+                      {song.lyrics[0].lines.length > 4 && <div style={{ opacity: 0.4 }}>…</div>}
                     </div>
                   </div>
-                ))}
+                )}
 
                 <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
                   <span style={{ fontSize: 26, fontWeight: 600, color: "oklch(0.46 0.11 165)", letterSpacing: "0.02em" }}>Full issue · everettlovesmusic.blog</span>

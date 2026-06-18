@@ -1,5 +1,7 @@
 import type { Post } from "@/lib/posts";
 import SongCard from "./SongCard";
+import PostShareButton from "./PostShareButton";
+import AlbumPostSection from "./AlbumPostSection";
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr + "T12:00:00Z");
@@ -7,6 +9,8 @@ function formatDate(dateStr: string) {
 }
 
 export default function PostSection({ post }: { post: Post }) {
+  if (post.type === "album") return <AlbumPostSection post={post} />;
+
   const isNote = post.type === "note";
 
   return (
@@ -30,7 +34,10 @@ export default function PostSection({ post }: { post: Post }) {
           <p style={{ fontSize: 16.5, lineHeight: 1.72, color: "var(--text-secondary)", maxWidth: "62ch" }}>
             {post.intro}
           </p>
-          <div style={{ marginTop: 28 }}>
+          <div style={{ marginTop: 14 }}>
+            <PostShareButton post={post} />
+          </div>
+          <div style={{ marginTop: 20 }}>
             {post.songs.map((song, i) => (
               <SongCard key={i} song={song} postMeta={{ issue: post.issue, date: post.date }} />
             ))}
