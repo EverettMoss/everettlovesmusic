@@ -28,7 +28,7 @@ export interface SongPost {
   issue: number;
   date: string;
   title: string;
-  intro: string;
+  intro: string[];
   type: "songs";
   songs: Song[];
 }
@@ -64,7 +64,7 @@ export interface AlbumPost {
   label?: string;
   runtime?: string;
   tracks?: number;
-  intro: string;
+  intro: string[];
   paragraphs?: string[];
   pullQuote?: string;
   standoutTracks?: StandoutTrack[];

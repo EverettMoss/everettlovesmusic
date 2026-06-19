@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Song, LyricLine } from "@/lib/posts";
+import { renderInline } from "@/lib/renderInline";
 import VerdictBadge from "./VerdictBadge";
 import ShareModal from "./ShareModal";
 
@@ -85,14 +86,14 @@ export default function SongCard({ song, postMeta }: Props) {
 
         <div className="song-card-body">
           <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "11px 0 0", maxWidth: "58ch" }}>
-            {song.review}
+            {renderInline(song.review)}
           </p>
 
           {song.lyrics?.map((l, i) => <LyricBlock key={i} lines={l.lines} caption={l.caption} />)}
 
           {song.reviewPost && (
             <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "14px 0 0", maxWidth: "58ch" }}>
-              {song.reviewPost}
+              {renderInline(song.reviewPost)}
             </p>
           )}
 

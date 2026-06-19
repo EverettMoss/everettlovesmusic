@@ -11,6 +11,37 @@ interface Props {
   onClose: () => void;
 }
 
+function FaviconIcon({ size = 44 }: { size?: number }) {
+  const heartPath = "M220.346,136.508L139.314,217.539C133.105,223.737 122.899,223.737 116.689,217.539L33.58,134.43C22.326,123.185 15.996,107.913 15.996,92.004C15.996,74.976 23.248,58.729 35.924,47.359C59.205,26.344 97.174,28.305 120.502,51.656L128.002,59.148L137.58,49.57C149.255,38.009 165.138,31.67 181.564,32.016C198.046,32.396 213.652,39.604 224.627,51.906C245.611,75.203 243.689,113.156 220.346,136.508Z";
+  const tf = { fontFamily: "'ArialRoundedMTBold', 'Arial Rounded MT Bold', sans-serif", fontSize: "200px" } as const;
+  return (
+    <svg width={size} height={size} viewBox="0 0 512 512">
+      <g transform="matrix(1.703286,0,0,1.703286,-180.041203,-309.207539)">
+        <g transform="matrix(0.515189,0,0,1,241.381189,155.963842)">
+          <text x="128.889" y="151.696" style={tf}>m</text>
+        </g>
+        <g transform="matrix(0.397269,0,0,0.397269,249.645097,205.509158)">
+          <path d={heartPath} fill="rgb(255,0,0)" stroke="rgb(255,0,0)" strokeWidth="1" />
+        </g>
+        <g transform="matrix(1.973295,0,0,1,-152.388352,156.159155)">
+          <text x="128.889" y="151.696" style={{ ...tf, fill: "rgb(6,64,43)" }}>e</text>
+        </g>
+      </g>
+      <g transform="matrix(-1.703286,0,0,1.703286,692.041203,-95.924563)">
+        <g transform="matrix(0.515189,0,0,1,241.381189,155.963842)">
+          <text x="128.889" y="151.696" style={{ ...tf, fill: "rgb(6,64,43)" }}>m</text>
+        </g>
+        <g transform="matrix(0.397269,0,0,0.397269,249.645097,205.509158)">
+          <path d={heartPath} fill="rgb(255,0,0)" stroke="rgb(255,0,0)" strokeWidth="1" />
+        </g>
+        <g transform="matrix(1.973295,0,0,1,-152.388352,156.159155)">
+          <text x="128.889" y="151.696" style={tf}>e</text>
+        </g>
+      </g>
+    </svg>
+  );
+}
+
 function proxyArt(url: string | null) {
   if (!url) return null;
   return `/api/proxy-image?url=${encodeURIComponent(url)}`;
@@ -180,7 +211,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
                     <span style={{ width: 16, height: 16, background: "oklch(0.45 0.1 165)", borderRadius: 3, display: "block" }} />
-                    <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.5 0.012 60)" }}>On Repeat</span>
+                    <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.5 0.012 60)" }}>Everett Loves Music</span>
                   </div>
                   <span style={{ fontSize: 23, fontWeight: 500, letterSpacing: "0.03em", color: "oklch(0.62 0.01 60)" }}>{d1}</span>
                 </div>
@@ -199,9 +230,12 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                 </div>
                 <p style={{ fontSize: 30, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: "52px 0 0", ...clamp(4) }}>{song.review}</p>
                 <LyricBlock />
-                <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{ fontSize: 23, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>A weekly music journal</span>
-                  <span style={{ fontSize: 23, fontWeight: 600, color: "oklch(0.46 0.11 165)" }}>everettlovesmusic.blog</span>
+                <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+                    <span style={{ fontSize: 23, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>the only music journal</span>
+                    <span style={{ fontSize: 23, fontWeight: 600, color: "oklch(0.46 0.11 165)" }}>everettlovesmusic.blog</span>
+                  </div>
+                  <FaviconIcon size={46} />
                 </div>
               </div>
             </div>
@@ -221,7 +255,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
                     <span style={{ width: 16, height: 16, background: "oklch(0.97 0.02 160)", borderRadius: 3, display: "block" }} />
-                    <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.92 0.03 160)" }}>On Repeat</span>
+                    <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.92 0.03 160)" }}>Everett Loves Music</span>
                   </div>
                   <span style={{ fontSize: 23, fontWeight: 500, letterSpacing: "0.03em", color: "oklch(0.85 0.05 162)" }}>{d1}</span>
                 </div>
@@ -243,9 +277,12 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
               <div style={{ position: "absolute", top: 430, left: 0, right: 0, bottom: 0, padding: "58px 84px 78px", display: "flex", flexDirection: "column" }}>
                 <p style={{ fontSize: 30, lineHeight: 1.5, color: "oklch(0.42 0.01 60)", margin: 0, ...clamp(4) }}>{song.review}</p>
                 <LyricBlock marginTop={38} />
-                <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{ fontSize: 23, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>A weekly music journal</span>
-                  <span style={{ fontSize: 23, fontWeight: 600, color: "oklch(0.46 0.11 165)" }}>everettlovesmusic.blog</span>
+                <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+                    <span style={{ fontSize: 23, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>the only music journal</span>
+                    <span style={{ fontSize: 23, fontWeight: 600, color: "oklch(0.46 0.11 165)" }}>everettlovesmusic.blog</span>
+                  </div>
+                  <FaviconIcon size={46} />
                 </div>
               </div>
             </div>
@@ -263,7 +300,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
               <div style={{ position: "absolute", inset: 0, padding: "130px 90px 116px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
                   <span style={{ width: 16, height: 16, background: "oklch(0.45 0.1 165)", borderRadius: 3, display: "block" }} />
-                  <span style={{ fontSize: 26, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "oklch(0.5 0.012 60)" }}>On Repeat</span>
+                  <span style={{ fontSize: 26, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "oklch(0.5 0.012 60)" }}>Everett Loves Music</span>
                 </div>
                 <div style={{ fontSize: 26, fontWeight: 500, letterSpacing: "0.03em", color: "oklch(0.62 0.01 60)", marginTop: 14 }}>{d2}</div>
 
@@ -299,6 +336,7 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
                 <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
                   <span style={{ fontSize: 26, fontWeight: 600, color: "oklch(0.46 0.11 165)", letterSpacing: "0.02em" }}>Full issue · everettlovesmusic.blog</span>
                   <span style={{ fontSize: 22, fontWeight: 500, color: "oklch(0.62 0.01 60)" }}>A new issue every Sunday</span>
+                  <FaviconIcon size={52} />
                 </div>
               </div>
             </div>

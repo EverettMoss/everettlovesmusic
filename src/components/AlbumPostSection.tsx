@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { AlbumPost } from "@/lib/posts";
 import { VERDICTS } from "./VerdictBadge";
+import { renderInline } from "@/lib/renderInline";
 
 const LINK_STYLE: React.CSSProperties = {
   display: "inline-flex",
@@ -110,12 +111,14 @@ export default function AlbumPostSection({ post }: { post: AlbumPost }) {
 
       {/* Review */}
       <section style={{ marginTop: 44, borderTop: "1px solid var(--border)", paddingTop: 34 }}>
-        <p style={{ fontSize: 19, lineHeight: 1.7, color: "oklch(0.3 0.008 60)", margin: "0 0 20px", maxWidth: "64ch", fontWeight: 500 }}>
-          {post.intro}
-        </p>
+        {post.intro.map((p, i) => (
+          <p key={i} style={{ fontSize: 19, lineHeight: 1.7, color: "oklch(0.3 0.008 60)", margin: i < post.intro.length - 1 ? "0 0 18px" : "0 0 20px", maxWidth: "64ch", fontWeight: 500 }}>
+            {renderInline(p)}
+          </p>
+        ))}
         {post.paragraphs?.map((p, i) => (
           <p key={i} style={{ fontSize: 16.5, lineHeight: 1.78, color: "oklch(0.36 0.008 60)", margin: i < (post.paragraphs!.length - 1) ? "0 0 18px" : "0", maxWidth: "64ch" }}>
-            {p}
+            {renderInline(p)}
           </p>
         ))}
       </section>
@@ -124,7 +127,7 @@ export default function AlbumPostSection({ post }: { post: AlbumPost }) {
       {post.pullQuote && (
         <section style={{ marginTop: 36, paddingLeft: 22, borderLeft: "3px solid oklch(0.45 0.1 165)" }}>
           <p style={{ fontSize: 23, lineHeight: 1.42, fontWeight: 600, letterSpacing: "-0.018em", color: "oklch(0.28 0.008 60)", margin: 0, maxWidth: "50ch" }}>
-            {post.pullQuote}
+            {renderInline(post.pullQuote)}
           </p>
         </section>
       )}
@@ -156,7 +159,7 @@ export default function AlbumPostSection({ post }: { post: AlbumPost }) {
                     </span>
                   </div>
                   <p style={{ fontSize: 15, lineHeight: 1.66, color: "oklch(0.45 0.01 60)", margin: "9px 0 0", maxWidth: "60ch" }}>
-                    {track.review}
+                    {renderInline(track.review)}
                   </p>
                 </div>
               </article>
@@ -178,7 +181,7 @@ export default function AlbumPostSection({ post }: { post: AlbumPost }) {
         <div style={{ width: 1, alignSelf: "stretch", background: "oklch(0.88 0.02 162)" }} />
         <p style={{ fontSize: 15.5, lineHeight: 1.62, color: "oklch(0.34 0.012 60)", margin: 0 }}>
           <strong style={{ fontWeight: 700, color: "oklch(0.28 0.008 60)" }}>The verdict.</strong>{" "}
-          {post.ratingVerdict}
+          {renderInline(post.ratingVerdict)}
         </p>
       </section>
 

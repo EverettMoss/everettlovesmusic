@@ -1,4 +1,5 @@
 import type { Post } from "@/lib/posts";
+import { renderInline } from "@/lib/renderInline";
 import SongCard from "./SongCard";
 import PostShareButton from "./PostShareButton";
 import AlbumPostSection from "./AlbumPostSection";
@@ -31,9 +32,11 @@ export default function PostSection({ post }: { post: Post }) {
 
       {post.type === "songs" && (
         <>
-          <p style={{ fontSize: 16.5, lineHeight: 1.72, color: "var(--text-secondary)", maxWidth: "62ch" }}>
-            {post.intro}
-          </p>
+          {post.intro.map((p, i) => (
+            <p key={i} style={{ fontSize: 16.5, lineHeight: 1.72, color: "var(--text-secondary)", maxWidth: "62ch", marginBottom: i < post.intro.length - 1 ? 14 : 0 }}>
+              {renderInline(p)}
+            </p>
+          ))}
           <div style={{ marginTop: 14 }}>
             <PostShareButton post={post} />
           </div>
@@ -49,7 +52,7 @@ export default function PostSection({ post }: { post: Post }) {
         <div style={{ borderTop: "1px solid var(--border)", paddingTop: 26 }}>
           {post.paragraphs.map((p, i) => (
             <p key={i} style={{ fontSize: 17, lineHeight: 1.78, color: "oklch(0.32 0.008 60)", maxWidth: "64ch", marginBottom: i < post.paragraphs.length - 1 ? 18 : 0 }}>
-              {p}
+              {renderInline(p)}
             </p>
           ))}
         </div>

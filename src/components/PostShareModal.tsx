@@ -10,6 +10,37 @@ interface Props {
   onClose: () => void;
 }
 
+function FaviconIcon({ size = 44 }: { size?: number }) {
+  const heartPath = "M220.346,136.508L139.314,217.539C133.105,223.737 122.899,223.737 116.689,217.539L33.58,134.43C22.326,123.185 15.996,107.913 15.996,92.004C15.996,74.976 23.248,58.729 35.924,47.359C59.205,26.344 97.174,28.305 120.502,51.656L128.002,59.148L137.58,49.57C149.255,38.009 165.138,31.67 181.564,32.016C198.046,32.396 213.652,39.604 224.627,51.906C245.611,75.203 243.689,113.156 220.346,136.508Z";
+  const tf = { fontFamily: "'ArialRoundedMTBold', 'Arial Rounded MT Bold', sans-serif", fontSize: "200px" } as const;
+  return (
+    <svg width={size} height={size} viewBox="0 0 512 512">
+      <g transform="matrix(1.703286,0,0,1.703286,-180.041203,-309.207539)">
+        <g transform="matrix(0.515189,0,0,1,241.381189,155.963842)">
+          <text x="128.889" y="151.696" style={tf}>m</text>
+        </g>
+        <g transform="matrix(0.397269,0,0,0.397269,249.645097,205.509158)">
+          <path d={heartPath} fill="rgb(255,0,0)" stroke="rgb(255,0,0)" strokeWidth="1" />
+        </g>
+        <g transform="matrix(1.973295,0,0,1,-152.388352,156.159155)">
+          <text x="128.889" y="151.696" style={{ ...tf, fill: "rgb(6,64,43)" }}>e</text>
+        </g>
+      </g>
+      <g transform="matrix(-1.703286,0,0,1.703286,692.041203,-95.924563)">
+        <g transform="matrix(0.515189,0,0,1,241.381189,155.963842)">
+          <text x="128.889" y="151.696" style={{ ...tf, fill: "rgb(6,64,43)" }}>m</text>
+        </g>
+        <g transform="matrix(0.397269,0,0,0.397269,249.645097,205.509158)">
+          <path d={heartPath} fill="rgb(255,0,0)" stroke="rgb(255,0,0)" strokeWidth="1" />
+        </g>
+        <g transform="matrix(1.973295,0,0,1,-152.388352,156.159155)">
+          <text x="128.889" y="151.696" style={tf}>e</text>
+        </g>
+      </g>
+    </svg>
+  );
+}
+
 function proxyArt(url: string | null) {
   if (!url) return null;
   return `/api/proxy-image?url=${encodeURIComponent(url)}`;
@@ -27,17 +58,42 @@ const DL_BTN: React.CSSProperties = {
   border: "1px solid oklch(0.85 0.04 162)", borderRadius: 7, cursor: "pointer",
 };
 
+async function fetchDataUrl(proxyUrl: string): Promise<string> {
+  const res = await fetch(proxyUrl);
+  const blob = await res.blob();
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.readAsDataURL(blob);
+  });
+}
+
 export default function PostShareModal({ post, onClose }: Props) {
   const storyRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
   const [previewW, setPreviewW] = useState(300);
+  const [dataUrls, setDataUrls] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (modalRef.current) {
       setPreviewW(Math.min(480, modalRef.current.clientWidth - 32));
     }
   }, []);
+
+  useEffect(() => {
+    async function load() {
+      const entries = await Promise.all(
+        post.songs
+          .map((s) => proxyArt(s.albumArtUrl))
+          .filter((url): url is string => url !== null)
+          .filter((url, i, arr) => arr.indexOf(url) === i)
+          .map(async (url) => [url, await fetchDataUrl(url)] as const)
+      );
+      setDataUrls(Object.fromEntries(entries));
+    }
+    load().catch(() => {});
+  }, [post]);
 
   const storyW = Math.min(337, Math.round(previewW * 0.65));
   const storyH = Math.round(storyW * 1920 / 1080);
@@ -57,7 +113,7 @@ export default function PostShareModal({ post, onClose }: Props) {
       wrap.style.cssText = "position:fixed;left:-99999px;top:0;";
       wrap.appendChild(clone);
       document.body.appendChild(wrap);
-      const opts = { cacheBust: true, width: 1080, height: 1920, pixelRatio: 1 };
+      const opts = { width: 1080, height: 1920, pixelRatio: 1 };
       await toPng(clone, opts);
       const url = await toPng(clone, opts);
       wrap.remove();
@@ -110,7 +166,7 @@ export default function PostShareModal({ post, onClose }: Props) {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 14 }}>
                     <span style={{ width: 16, height: 16, background: "oklch(0.45 0.1 165)", borderRadius: 3, display: "block" }} />
-                    <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.5 0.012 60)" }}>On Repeat</span>
+                    <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.5 0.012 60)" }}>Everett Loves Music</span>
                   </div>
                   <span style={{ fontSize: 22, fontWeight: 500, color: "oklch(0.62 0.01 60)" }}>{dateStr}</span>
                 </div>
@@ -122,7 +178,10 @@ export default function PostShareModal({ post, onClose }: Props) {
 
                 {/* Intro */}
                 <div style={{ fontSize: 28, lineHeight: 1.52, color: "oklch(0.5 0.01 60)", marginTop: 18, display: "-webkit-box", WebkitLineClamp: 1, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>
-                  {post.intro}
+                  {post.intro[0]}
+                </div>
+                <div style={{ fontSize: 22, fontWeight: 500, color: "oklch(0.68 0.01 60)", marginTop: 10, fontStyle: "italic" }}>
+                  continued at everettlovesmusic.blog
                 </div>
 
                 {/* Divider */}
@@ -133,6 +192,7 @@ export default function PostShareModal({ post, onClose }: Props) {
                   {post.songs.map((song, i) => {
                     const v = VERDICTS[song.verdict];
                     const art = proxyArt(song.albumArtUrl);
+                    const artSrc = art ? (dataUrls[art] ?? art) : null;
                     return (
                       <div
                         key={i}
@@ -145,9 +205,9 @@ export default function PostShareModal({ post, onClose }: Props) {
                           flexShrink: 0,
                         }}
                       >
-                        {art ? (
+                        {artSrc ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={art} alt="" style={{ width: 100, height: 100, borderRadius: 10, objectFit: "cover", flexShrink: 0 }} />
+                          <img src={artSrc} alt="" style={{ width: 100, height: 100, borderRadius: 10, objectFit: "cover", flexShrink: 0 }} />
                         ) : (
                           <div style={{ width: 100, height: 100, borderRadius: 10, background: "oklch(0.88 0.005 70)", flexShrink: 0 }} />
                         )}
@@ -168,9 +228,12 @@ export default function PostShareModal({ post, onClose }: Props) {
                 </div>
 
                 {/* Footer */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 40 }}>
-                  <span style={{ fontSize: 22, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>A weekly music journal</span>
-                  <span style={{ fontSize: 22, fontWeight: 600, color: "oklch(0.46 0.11 165)" }}>everettlovesmusic.blog</span>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 22, marginTop: 40 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+                    <span style={{ fontSize: 22, fontWeight: 500, color: "oklch(0.6 0.01 60)" }}>the only music journal</span>
+                    <span style={{ fontSize: 22, fontWeight: 600, color: "oklch(0.46 0.11 165)" }}>everettlovesmusic.blog</span>
+                  </div>
+                  <FaviconIcon size={52} />
                 </div>
 
               </div>

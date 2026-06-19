@@ -2,7 +2,7 @@
   "issue": 2,
   "date": "2026-06-11",
   "title": "I like What These Young Fellas are Doin",
-  "intro": "Group of artists breaking into the scene.",
+  "intro": ["Group of artists breaking into the scene."],
   "type": "songs",
   "songs": [
     {
