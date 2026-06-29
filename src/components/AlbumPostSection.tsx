@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { AlbumPost } from "@/lib/posts";
-import { VERDICTS } from "./VerdictBadge";
+import { VERDICTS, ALBUM_VERDICTS } from "./VerdictBadge";
 import { renderInline } from "@/lib/renderInline";
 
 const LINK_STYLE: React.CSSProperties = {
@@ -169,21 +169,25 @@ export default function AlbumPostSection({ post }: { post: AlbumPost }) {
       )}
 
       {/* Verdict bar */}
-      <section style={{ marginTop: 44, background: "oklch(0.97 0.012 162)", border: "1px solid oklch(0.9 0.02 162)", borderRadius: 12, padding: "24px 26px", display: "flex", gap: 22, alignItems: "center" }}>
-        <div style={{ flexShrink: 0, textAlign: "center" }}>
-          <div style={{ fontSize: 40, fontWeight: 800, letterSpacing: "-0.04em", color: "oklch(0.45 0.1 165)", lineHeight: 1 }}>
-            {post.rating}
-          </div>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "oklch(0.55 0.04 162)", marginTop: 4 }}>
-            / 10
-          </div>
-        </div>
-        <div style={{ width: 1, alignSelf: "stretch", background: "oklch(0.88 0.02 162)" }} />
-        <p style={{ fontSize: 15.5, lineHeight: 1.62, color: "oklch(0.34 0.012 60)", margin: 0 }}>
-          <strong style={{ fontWeight: 700, color: "oklch(0.28 0.008 60)" }}>The verdict.</strong>{" "}
-          {renderInline(post.ratingVerdict)}
-        </p>
-      </section>
+      {(() => {
+        const av = ALBUM_VERDICTS[post.albumVerdict];
+        return (
+          <section style={{ marginTop: 44, background: av.bg, border: `1px solid ${av.color}22`, borderRadius: 12, padding: "22px 26px", display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap" }}>
+            <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.01em", color: av.color, flexShrink: 0 }}>
+              {av.label}
+            </span>
+            {post.ratingVerdict && (
+              <>
+                <div style={{ width: 1, alignSelf: "stretch", minHeight: 20, background: `${av.color}44` }} />
+                <p style={{ fontSize: 15.5, lineHeight: 1.62, color: "oklch(0.34 0.012 60)", margin: 0 }}>
+                  <strong style={{ fontWeight: 700, color: "oklch(0.28 0.008 60)" }}>The verdict.</strong>{" "}
+                  {renderInline(post.ratingVerdict)}
+                </p>
+              </>
+            )}
+          </section>
+        );
+      })()}
 
     </section>
   );

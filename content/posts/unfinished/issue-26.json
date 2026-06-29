@@ -1,0 +1,53 @@
+{
+  "issue": 26,
+  "date": "2026-06-22",
+  "title": "Short n' Sweet",
+  "type": "album",
+  "artist": "Sabrina Carpenter",
+  "albumArtUrl": null,
+  "verdict": "love",
+  "verdictLabel": "On repeat all summer",
+  "albumVerdict": "solid",
+  "ratingVerdict": "A tight, confident pop record that knows exactly what it is and delivers. Nothing reinvented, everything executed.",
+  "released": "2024",
+  "label": "Island Records",
+  "runtime": "36 min",
+  "tracks": 12,
+  "intro": [
+    "I resisted this one longer than I should have. Dismissed it as the algorithm's pick of the season. Then 'Taste' came on at a coffee shop and I sat there replaying it four times before I ordered anything.",
+    "Short n' Sweet doesn't pretend to be anything other than what it is: twelve songs of extremely polished pop with better jokes than you're expecting. That turns out to be enough."
+  ],
+  "paragraphs": [
+    "Carpenter's writing is sharper here than it gets credit for. The album runs on a very specific kind of wit — dry, a little mean, delivered with a smile. 'Please Please Please' is the obvious one, but 'Coincidence' does it better: a song about a situationship told entirely through things that just keep happening to happen. The restraint is the joke.",
+    "Production-wise it's almost aggressively clean — Amy Allen and Julian Bunetta keep everything at the same polished sheen. That's the one place the album loses me slightly. A rougher edge somewhere would have made the best songs hit harder. But there's also something to be said for a record that sounds this confident in its lane."
+  ],
+  "pullQuote": "Twelve songs, zero filler, and more memorable one-liners than most albums twice its length.",
+  "standoutTracks": [
+    {
+      "trackNumber": 1,
+      "title": "Taste",
+      "verdict": "love",
+      "review": "The opener sets the tone immediately — playful, a little cutting, with a hook that sticks whether you want it to or not. Perfect 'I told you so' energy."
+    },
+    {
+      "trackNumber": 4,
+      "title": "Please Please Please",
+      "verdict": "rotation",
+      "review": "The single everyone knows. It's good and she knows it's good and that confidence is kind of the whole point of the song."
+    },
+    {
+      "trackNumber": 7,
+      "title": "Coincidence",
+      "verdict": "love",
+      "verdictLabel": "Best track on the album",
+      "review": "The funniest song on the record, which also makes it the saddest. The whole premise is a lie the narrator is telling herself in real time. It sneaks up on you."
+    },
+    {
+      "trackNumber": 10,
+      "title": "Don't Smile",
+      "verdict": "rotation",
+      "review": "The one moment where the production opens up a little. A slower pace suits her voice well and the bridge lands harder for it."
+    }
+  ],
+  "searchQuery": "Short n Sweet Sabrina Carpenter"
+}

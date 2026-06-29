@@ -60,7 +60,7 @@ export default function SongCard({ song, postMeta }: Props) {
   const [showShare, setShowShare] = useState(false);
   const query = encodeURIComponent(`${song.title} ${song.artist}`);
   const spotifyUrl = `https://open.spotify.com/search/${query}`;
-  const appleMusicUrl = `https://music.apple.com/us/search?term=${query}`;
+  const appleMusicUrl = song.appleMusicUrl ?? `https://music.apple.com/us/search?term=${query}`;
 
   return (
     <>
@@ -85,9 +85,11 @@ export default function SongCard({ song, postMeta }: Props) {
         </div>
 
         <div className="song-card-body">
-          <p style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "11px 0 0", maxWidth: "58ch" }}>
-            {renderInline(song.review)}
-          </p>
+          {song.review.split("\n\n").map((para, i) => (
+            <p key={i} style={{ fontSize: 15, lineHeight: 1.66, color: "var(--text-dim)", margin: "11px 0 0", maxWidth: "58ch" }}>
+              {renderInline(para.trim())}
+            </p>
+          ))}
 
           {song.lyrics?.map((l, i) => <LyricBlock key={i} lines={l.lines} caption={l.caption} />)}
 

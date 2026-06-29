@@ -116,6 +116,14 @@ export default function ShareModal({ song, postMeta, onClose }: Props) {
       await toPng(clone, opts);
       const url = await toPng(clone, opts);
       wrap.remove();
+      try {
+        const blob = await fetch(url).then((r) => r.blob());
+        const file = new File([blob], filename, { type: "image/png" });
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file] });
+          return;
+        }
+      } catch {}
       const a = document.createElement("a");
       a.href = url;
       a.download = filename;

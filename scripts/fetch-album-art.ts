@@ -13,12 +13,12 @@ async function fetchAlbumArt(
   artist: string,
   searchQuery?: string,
   entity: "musicTrack" | "album" = "musicTrack"
-): Promise<{ url: string; matchedTitle: string; matchedArtist: string } | null> {
+): Promise<{ url: string; matchedTitle: string; matchedArtist: string; trackViewUrl?: string } | null> {
   const term = searchQuery ?? `${title} ${artist}`;
   const url = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=${entity}&limit=5`;
   const res = await fetch(url);
   const data = await res.json() as {
-    results?: Array<{ trackName?: string; collectionName?: string; artistName?: string; artworkUrl100?: string }>;
+    results?: Array<{ trackName?: string; collectionName?: string; artistName?: string; artworkUrl100?: string; trackViewUrl?: string }>;
   };
   const results = data.results ?? [];
   if (results.length === 0) return null;
@@ -48,6 +48,7 @@ async function fetchAlbumArt(
     url: best.artworkUrl100.replace("100x100bb", "600x600bb"),
     matchedTitle,
     matchedArtist: best.artistName ?? "",
+    trackViewUrl: best.trackViewUrl,
   };
 }
 
@@ -74,6 +75,7 @@ async function main() {
           console.log(`  ✓ ${song.title} — ${song.artist}`);
           console.log(`    → "${result.matchedTitle}" by ${result.matchedArtist}${warning}`);
           song.albumArtUrl = result.url;
+          if (result.trackViewUrl) song.appleMusicUrl = result.trackViewUrl;
           changed = true;
         } else {
           console.log(`  ✗ no result: ${song.title} — ${song.artist}`);

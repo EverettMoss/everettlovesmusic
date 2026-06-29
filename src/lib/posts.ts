@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 
 export type Verdict = "soty" | "love" | "rotation" | "cool" | "ok" | "boring" | "meh" | "skip";
+export type AlbumVerdict = "amazing" | "aoty" | "solid" | "fans_only" | "boring" | "forgettable" | "gems";
 
 export interface LyricLine {
   text: string;
@@ -22,6 +23,7 @@ export interface Song {
   lyrics?: Lyric[];
   searchQuery?: string;
   albumArtUrl: string | null;
+  appleMusicUrl?: string | null;
 }
 
 export interface SongPost {
@@ -58,8 +60,8 @@ export interface AlbumPost {
   albumArtUrl: string | null;
   verdict: Verdict;
   verdictLabel?: string;
-  rating: number;
-  ratingVerdict: string;
+  albumVerdict: AlbumVerdict;
+  ratingVerdict?: string;
   released?: string;
   label?: string;
   runtime?: string;

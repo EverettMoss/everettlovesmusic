@@ -1,4 +1,4 @@
-import type { Verdict } from "@/lib/posts";
+import type { Verdict, AlbumVerdict } from "@/lib/posts";
 
 const VERDICTS: Record<Verdict, { label: string; color: string; bg: string }> = {
   soty:   { label: "Song of the year potential",    color: "oklch(0.6 0.13 75)",   bg: "oklch(0.95 0.045 82)" },
@@ -34,4 +34,14 @@ export default function VerdictBadge({ verdict }: Props) {
   );
 }
 
-export { VERDICTS };
+const ALBUM_VERDICTS: Record<AlbumVerdict, { label: string; color: string; bg: string }> = {
+  amazing:    { label: "Amazing",                          color: "oklch(0.52 0.16 65)",  bg: "oklch(0.94 0.06 72)" },
+  aoty:       { label: "Album of the year potential",      color: "oklch(0.55 0.14 75)",  bg: "oklch(0.95 0.05 82)" },
+  solid:      { label: "Solid",                            color: "oklch(0.48 0.11 165)", bg: "oklch(0.95 0.04 160)" },
+  fans_only:  { label: "Only listen if you're already a fan", color: "oklch(0.5 0.08 225)", bg: "oklch(0.95 0.025 225)" },
+  boring:     { label: "Boring",                           color: "oklch(0.53 0.07 288)", bg: "oklch(0.95 0.025 288)" },
+  forgettable:{ label: "Forgettable",                      color: "oklch(0.5 0.006 250)", bg: "oklch(0.95 0.002 250)" },
+  gems:       { label: "A few gems",                       color: "oklch(0.54 0.12 50)",  bg: "oklch(0.95 0.04 55)" },
+};
+
+export { VERDICTS, ALBUM_VERDICTS };

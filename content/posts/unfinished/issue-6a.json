@@ -1,0 +1,41 @@
+{
+  "issue": 6,
+  "date": "2026-06-28",
+  "title": "Don't Miss These!",
+  "intro": ["For the most part these songs came out in June."],
+  "type": "songs",
+  "songs": [
+    {
+      "title": "2 Many Days",
+      "artist": "Syd",
+      "verdict": "love",
+      "review": "If you like SZA, this song is for you. If you're into R&B, this song is for you. As a huge Steve Lacy fan, it only made sense for me to start exploring more of Syd's music. I'm familiar with some of The Internet's biggest records, but I haven't done a deep dive into their discography yet. I've really enjoyed the singles Syd has released for this project, and I absolutely love this one. I'm definitely going to check out her new album when it drops on the 16th. I also have to give her a shoutout for producing this song, along with every other track on the album.",
+      "searchQuery": "beard syd",
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b0/97/bb/b097bb45-ea94-f330-af05-61892186ed44/093624819783.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "Valentine’s Day Freestyle ’26",
+      "artist": "JPEGMAFIA",
+      "verdict": "rotation",
+      "review": "Why is Peggy dropping a Valentine's Freestyle in June as part of his deluxe? I don't know. But one thing I do know is that if it's a Valentine's Day Freestyle, it's going to be good. Last year, he gave us an amazing song on the actual day. Hopefully, he keeps the tradition going because I can't get enough of these.\n\nEvery time I hear Peggy rapping over an acoustic guitar and sample, I automatically add the song to my playlist. The first beat drop is a little jarring, especially if you don't normally listen to him, but before you know it, the song is over. I promise this won't scare the hoes, but it might heighten their senses a little bit. His flow during the second verse is so smooth as he effortlessly blends each line into the next. Peggy tends to  let the instrumental breathe in the middle of songs and this a great example of that. I love this song, and it is much better than most of the songs on this album.",
+      "searchQuery": "Valentine’s Day Freestyle ’26 jpegmafia",
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3d/94/4b/3d944b54-3499-2513-8cc0-45faf3494137/820233118194.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "DAMN",
+      "artist": "Kanye West (Ye)",
+      "verdict": "soty",
+      "review": "Ye surprised me by sticking to a release date he announced out-of-the-blue a few weeks back. I didn't know what to expect, but it included two new tracks and updated mixing on all songs. On first listen, this was my favorite track on BULLY, and potential to be my favorite of the year. A couple months later and that statement is  still true. I was worried a new mix might butcher the original emotion in the song, but it hasn't. In the mix, the background vocals are more prominent, Ye's vocals are more clear, and new vocal recording have gotten rid of some unwanted artifacts in the old vocals most likely due to the use of AI. \n\nSonically, this song is an interlude, but stylistically, I view this song as a poem. There is only 1 verse/ chorus that is repeated three times, which I see as a poem.\n",
+      "searchQuery": "bully ye deluxe",
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a4/ef/33/a4ef3370-c56d-97bc-efbf-34f3684b0884/712132042055_cover.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "MOVE YOUR BODY",
+      "artist": "The Kid LAROI",
+      "verdict": "love",
+      "review": "He probably moonwalked into the booth because he had to be feeling like Mike when he made this. This song is an upbeat, '80s-style pop anthem that makes you want to dance.",
+      "searchQuery": "before i forget kid laroi deluxe",
+      "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/59/ad/dd/59addda9-2017-ea88-750f-5ec02ab46243/196874298176.jpg/600x600bb.jpg"
+    }
+  ]
+}

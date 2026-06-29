@@ -7,13 +7,13 @@
   "albumArtUrl": null,
   "verdict": "soty",
   "verdictLabel": "Song of the year potential — twice over",
-  "rating": 9.4,
+  "albumVerdict": "aoty",
   "ratingVerdict": "A near-perfect mood piece that rewards patience over and over. Not background music — give it your full attention and it gives it back.",
   "released": "2016",
   "label": "Boys Don't Cry",
   "runtime": "60 min",
   "tracks": 17,
-  "intro": "Ten years of living with this record and it still refuses to sit still. Every time I think I've mapped it, a song I'd filed under skip cracks open and becomes the whole point of the week.",
+  "intro": ["Ten years of living with this record and it still refuses to sit still. Every time I think I've mapped it, a song I'd filed under skip cracks open and becomes the whole point of the week."],
   "paragraphs": [
     "It's an album built out of restraint — half-finished thoughts, guitars that never quite resolve, vocals pitched up until they sound like someone else remembering you. The first few listens feel like overhearing a conversation through a wall. Then one day the wall isn't there and you're inside it.",
     "What keeps me coming back isn't any single hook — it's the negative space. The way a track ends a beat before you're ready. The silence is load-bearing here, and almost nobody else builds it this carefully."
