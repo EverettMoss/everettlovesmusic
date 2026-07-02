@@ -58,16 +58,16 @@ export default function ListPostSection({ post }: { post: ListPost }) {
           const appleMusicUrl = song.appleMusicUrl ?? `https://music.apple.com/us/search?term=${query}`;
 
           return (
-            <div key={i} style={{ padding: "14px 0", borderBottom: "1px solid var(--border)", display: "flex", gap: 16, alignItems: "stretch" }}>
+            <div key={i} style={{ padding: "14px 0", borderBottom: "1px solid var(--border)", display: "flex", gap: 16, alignItems: "center" }}>
               {/* Number */}
-              <span style={{ fontSize: 13, fontWeight: 600, color: "oklch(0.72 0.008 60)", width: 22, textAlign: "right", flexShrink: 0, paddingTop: 2 }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: "oklch(0.72 0.008 60)", width: 22, textAlign: "right", flexShrink: 0 }}>
                 {i + 1}
               </span>
 
-              {/* Art — stretches to full row height */}
-              <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden", background: "oklch(0.88 0.005 70)", position: "relative" }}>
+              {/* Art — fixed square */}
+              <div style={{ width: 64, height: 64, flexShrink: 0, borderRadius: 6, overflow: "hidden", background: "oklch(0.88 0.005 70)" }}>
                 {song.albumArtUrl && (
-                  <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} fill style={{ objectFit: "cover" }} />
+                  <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} width={64} height={64} style={{ display: "block", objectFit: "cover" }} />
                 )}
               </div>
 
