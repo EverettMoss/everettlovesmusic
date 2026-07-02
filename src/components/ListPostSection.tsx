@@ -58,47 +58,45 @@ export default function ListPostSection({ post }: { post: ListPost }) {
           const appleMusicUrl = song.appleMusicUrl ?? `https://music.apple.com/us/search?term=${query}`;
 
           return (
-            <div key={i} style={{ padding: "14px 0", borderBottom: "1px solid var(--border)" }}>
-              {/* Top row: number + art + title/artist */}
-              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: "oklch(0.72 0.008 60)", width: 22, textAlign: "right", flexShrink: 0 }}>
-                  {i + 1}
-                </span>
-                <div style={{ width: 52, height: 52, borderRadius: 6, overflow: "hidden", background: "oklch(0.88 0.005 70)", flexShrink: 0 }}>
-                  {song.albumArtUrl ? (
-                    <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} width={52} height={52} style={{ display: "block" }} />
-                  ) : (
-                    <div style={{ width: 52, height: 52 }} />
-                  )}
-                </div>
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em", lineHeight: 1.3 }}>
-                    {song.title}
-                  </div>
-                  <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 2 }}>
-                    {song.artist}
-                  </div>
-                </div>
+            <div key={i} style={{ padding: "14px 0", borderBottom: "1px solid var(--border)", display: "flex", gap: 16, alignItems: "stretch" }}>
+              {/* Number */}
+              <span style={{ fontSize: 13, fontWeight: 600, color: "oklch(0.72 0.008 60)", width: 22, textAlign: "right", flexShrink: 0, paddingTop: 2 }}>
+                {i + 1}
+              </span>
+
+              {/* Art — stretches to full row height */}
+              <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden", background: "oklch(0.88 0.005 70)", position: "relative" }}>
+                {song.albumArtUrl && (
+                  <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} fill style={{ objectFit: "cover" }} />
+                )}
               </div>
 
-              {/* Bottom row: share links, indented to align with title */}
-              <div style={{ paddingLeft: 22 + 16 + 52 + 16, marginTop: 10, display: "flex", flexWrap: "wrap", gap: 6 }}>
-                <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
-                  Spotify <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
-                </a>
-                <a href={appleMusicUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
-                  Apple Music <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
-                </a>
-                {song.youtubeUrl && (
-                  <a href={song.youtubeUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
-                    YouTube <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
+              {/* Right: title + artist + share links */}
+              <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em", lineHeight: 1.3 }}>
+                  {song.title}
+                </div>
+                <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 2 }}>
+                  {song.artist}
+                </div>
+                <div style={{ marginTop: 9, display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
+                    Spotify <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
                   </a>
-                )}
-                {song.soundcloudUrl && (
-                  <a href={song.soundcloudUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
-                    SoundCloud <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
+                  <a href={appleMusicUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
+                    Apple Music <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
                   </a>
-                )}
+                  {song.youtubeUrl && (
+                    <a href={song.youtubeUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
+                      YouTube <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
+                    </a>
+                  )}
+                  {song.soundcloudUrl && (
+                    <a href={song.soundcloudUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
+                      SoundCloud <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           );
