@@ -106,6 +106,16 @@ export default function SongCard({ song, postMeta }: Props) {
             <a href={appleMusicUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
               Apple Music <span style={{ fontSize: 11, opacity: 0.6 }}>↗</span>
             </a>
+            {song.youtubeUrl && (
+              <a href={song.youtubeUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
+                YouTube <span style={{ fontSize: 11, opacity: 0.6 }}>↗</span>
+              </a>
+            )}
+            {song.soundcloudUrl && (
+              <a href={song.soundcloudUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
+                SoundCloud <span style={{ fontSize: 11, opacity: 0.6 }}>↗</span>
+              </a>
+            )}
             <button onClick={() => setShowShare(true)} style={BTN_STYLE}>
               Share
             </button>

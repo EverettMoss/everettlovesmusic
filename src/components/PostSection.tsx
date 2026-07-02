@@ -1,8 +1,10 @@
+import Link from "next/link";
 import type { Post } from "@/lib/posts";
 import { renderInline } from "@/lib/renderInline";
 import SongCard from "./SongCard";
 import PostShareButton from "./PostShareButton";
 import AlbumPostSection from "./AlbumPostSection";
+import ListPostSection from "./ListPostSection";
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr + "T12:00:00Z");
@@ -11,6 +13,7 @@ function formatDate(dateStr: string) {
 
 export default function PostSection({ post }: { post: Post }) {
   if (post.type === "album") return <AlbumPostSection post={post} />;
+  if (post.type === "list") return <ListPostSection post={post} />;
 
   const isNote = post.type === "note";
 
@@ -27,7 +30,9 @@ export default function PostSection({ post }: { post: Post }) {
       </div>
 
       <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: "-0.022em", lineHeight: 1.12, marginBottom: 14 }}>
-        {post.title}
+        <Link href={`/issue/${post.issue}`} style={{ color: "inherit", textDecoration: "none" }}>
+          {post.title}
+        </Link>
       </h2>
 
       {post.type === "songs" && (

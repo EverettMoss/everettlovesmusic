@@ -1,0 +1,59 @@
+  {
+    "issue": 7,
+    "date": "2026-07-01",
+    "title": "Best Songs of 2026 (so far)",
+    "type": "list",
+    "description": "It's already July 1st! That means we're halfway through 2026, making it the perfect time to reflect. We've gotten so many great singles and a handful of memorable albums. After letting everything marinate over the past few months, I decided to keep it to one song per album. So in no particular order, here’s my top 10.",
+    "songs": [
+      {
+        "title": "4Real",
+        "artist": "Nine Vicious",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/d5/d7/48d5d7c8-a2b8-7f93-553b-d0919d89670f/235524.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Rosary",
+        "artist": "Don Toliver ft. Travis Scott",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e8/e5/c6/e8e5c690-a958-622e-eb62-0dce6059300e/075679599360.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "have to.",
+        "artist": "Brent Faiyaz",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/83/6e/89836e4d-f67d-cc37-8ca9-b0e7c96f10ff/199976295487.png/600x600bb.jpg"
+      },
+      {
+        "title": "Birds & the Bees",
+        "artist": "Baby Keem",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/97/c7/8697c7d8-2565-118e-b461-bfcc22193cfe/196874126554.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Damn",
+        "artist": "Kanye West",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4b/38/d1/4b38d146-381d-ace2-73df-24074576e62b/656465138828_cover.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "New To This",
+        "artist": "Jozzy",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ad/5c/8d/ad5c8dfa-dd2f-46a6-6df8-a6bd060d985e/4099964248838.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Whisper My Name",
+        "artist": "Drake",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7f/39/61/7f396123-be56-bc11-eaab-976441808e58/26UMGIM63622.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Road Trips",
+        "artist": "Drake",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/c0/e6/25c0e60b-5e99-58b2-6a52-821602141cce/26UMGIM63615.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "STANDING O",
+        "artist": "Mike WiLL Made-It, Travis Porter & Monaleo",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/72/1f/ce/721fceed-c48b-6a16-2ce8-bab2b6b766c1/193436460828_Rsetcover.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "ROBBERY",
+        "artist": "A$AP Rocky ft. Doechii",
+        "albumArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/99/f1/5899f1b4-674b-3033-9e12-14348a9de396/196873986029.jpg/600x600bb.jpg"
+      }
+    ]
+  }

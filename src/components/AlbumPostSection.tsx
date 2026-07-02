@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { AlbumPost } from "@/lib/posts";
 import { VERDICTS, ALBUM_VERDICTS } from "./VerdictBadge";
 import { renderInline } from "@/lib/renderInline";
@@ -79,7 +80,9 @@ export default function AlbumPostSection({ post }: { post: AlbumPost }) {
             {post.artist}
           </div>
           <h2 style={{ fontSize: 46, fontWeight: 800, letterSpacing: "-0.035em", margin: "6px 0 0", lineHeight: 0.98 }}>
-            {post.title}
+            <Link href={`/issue/${post.issue}`} style={{ color: "inherit", textDecoration: "none" }}>
+              {post.title}
+            </Link>
           </h2>
           <div style={{ marginTop: 16 }}>
             <span style={{ display: "inline-block", fontSize: 12, fontWeight: 600, letterSpacing: "0.01em", padding: "6px 12px", borderRadius: 6, color: v.color, background: v.bg }}>

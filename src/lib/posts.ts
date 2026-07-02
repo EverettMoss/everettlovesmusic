@@ -24,6 +24,8 @@ export interface Song {
   searchQuery?: string;
   albumArtUrl: string | null;
   appleMusicUrl?: string | null;
+  youtubeUrl?: string | null;
+  soundcloudUrl?: string | null;
 }
 
 export interface SongPost {
@@ -73,7 +75,26 @@ export interface AlbumPost {
   searchQuery?: string;
 }
 
-export type Post = SongPost | NotePost | AlbumPost;
+export interface ListSong {
+  title: string;
+  artist: string;
+  albumArtUrl: string | null;
+  searchQuery?: string;
+  appleMusicUrl?: string | null;
+  youtubeUrl?: string | null;
+  soundcloudUrl?: string | null;
+}
+
+export interface ListPost {
+  issue: number;
+  date: string;
+  title: string;
+  type: "list";
+  description?: string;
+  songs: ListSong[];
+}
+
+export type Post = SongPost | NotePost | AlbumPost | ListPost;
 
 export function getAllPosts(): Post[] {
   const postsDir = path.join(process.cwd(), "content", "posts");
