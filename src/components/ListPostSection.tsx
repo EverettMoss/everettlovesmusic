@@ -58,42 +58,31 @@ export default function ListPostSection({ post }: { post: ListPost }) {
           const appleMusicUrl = song.appleMusicUrl ?? `https://music.apple.com/us/search?term=${query}`;
 
           return (
-            <div
-              key={i}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 16,
-                padding: "14px 0",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
-              {/* Number */}
-              <span style={{ fontSize: 13, fontWeight: 600, color: "oklch(0.72 0.008 60)", width: 22, textAlign: "right", flexShrink: 0 }}>
-                {i + 1}
-              </span>
-
-              {/* Art */}
-              <div style={{ width: 52, height: 52, borderRadius: 6, overflow: "hidden", background: "oklch(0.88 0.005 70)", flexShrink: 0 }}>
-                {song.albumArtUrl ? (
-                  <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} width={52} height={52} style={{ display: "block" }} />
-                ) : (
-                  <div style={{ width: 52, height: 52 }} />
-                )}
-              </div>
-
-              {/* Title + artist */}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
-                  {song.title}
+            <div key={i} style={{ padding: "14px 0", borderBottom: "1px solid var(--border)" }}>
+              {/* Top row: number + art + title/artist */}
+              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "oklch(0.72 0.008 60)", width: 22, textAlign: "right", flexShrink: 0 }}>
+                  {i + 1}
+                </span>
+                <div style={{ width: 52, height: 52, borderRadius: 6, overflow: "hidden", background: "oklch(0.88 0.005 70)", flexShrink: 0 }}>
+                  {song.albumArtUrl ? (
+                    <Image src={song.albumArtUrl} alt={`${song.title} by ${song.artist}`} width={52} height={52} style={{ display: "block" }} />
+                  ) : (
+                    <div style={{ width: 52, height: 52 }} />
+                  )}
                 </div>
-                <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 2, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
-                  {song.artist}
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em", lineHeight: 1.3 }}>
+                    {song.title}
+                  </div>
+                  <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 2 }}>
+                    {song.artist}
+                  </div>
                 </div>
               </div>
 
-              {/* Links */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, flexShrink: 0 }}>
+              {/* Bottom row: share links, indented to align with title */}
+              <div style={{ paddingLeft: 22 + 16 + 52 + 16, marginTop: 10, display: "flex", flexWrap: "wrap", gap: 6 }}>
                 <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" style={LINK_STYLE}>
                   Spotify <span style={{ fontSize: 10, opacity: 0.6 }}>↗</span>
                 </a>
